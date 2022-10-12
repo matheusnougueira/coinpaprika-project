@@ -3,6 +3,7 @@ import { IUser } from '../interfaces/IUser'
 import User from '../models/User'
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
+require('dotenv').config()
 
 const listUsers = async (request: Request, response: Response): Promise<void> => {
     try {
@@ -21,7 +22,9 @@ const listUsers = async (request: Request, response: Response): Promise<void> =>
 
 const addUser = async (request: Request, response: Response): Promise<void> => {
     try {
-        const { nickName, password } = request.body as Pick<IUser, 'nickName' | 'password'>
+        let { nickName, password } = request.body as Pick<IUser, 'nickName' | 'password'>
+
+        nickName = nickName.toLowerCase()
 
         const userExists = await User.findOne({ nickName: nickName })
 
@@ -31,7 +34,7 @@ const addUser = async (request: Request, response: Response): Promise<void> => {
 
             const hashedPassword = await bcrypt.hash(password, 10)
 
-            const token = jwt.sign({}, 'secret', { expiresIn: '1d' })
+            const token = jwt.sign({}, `${process.env.SECRET_KEY}`, { expiresIn: '1d' })
 
             const user: IUser = new User({
                 nickName,
@@ -58,7 +61,9 @@ const addUser = async (request: Request, response: Response): Promise<void> => {
 
 const authUser = async (request: Request, response: Response): Promise<void> => {
     try {
-        const { nickName, password } = request.body as Pick<IUser, 'nickName' | 'password'>
+        let { nickName, password } = request.body as Pick<IUser, 'nickName' | 'password'>
+
+        nickName = nickName.toLowerCase()
 
         const userAuth = await User.findOne({ nickName: nickName })
 
@@ -72,7 +77,7 @@ const authUser = async (request: Request, response: Response): Promise<void> => 
                 response.status(401).json({ message: 'Password is invalide' })
             } else {
 
-                const token = jwt.sign({ id: userAuth._id }, 'secret', { expiresIn: '1d' })
+                const token = jwt.sign({ id: userAuth._id }, `${process.env.SECRET_KEY}`, { expiresIn: '1d' })
 
                 const userAuthorized = {
                     user: nickName,

@@ -6,11 +6,7 @@ import { addUser, authUser, listUsers } from '../controllers/UserController'
 
 const router: Router = Router()
 
-router.post('/user', addUser)
-router.post('/user/auth', authUser)
-
-// Rota autenticada que vai listar informações da API do coinpaprika
-router.get('/users', authMiddleware, listUsers)
+router.post('/v1/user/signup', addUser, authUser)
+router.post('/v1/user/auth/login', authUser)
 
 export default router
-

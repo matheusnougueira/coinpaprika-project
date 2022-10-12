@@ -1,8 +1,9 @@
+require('dotenv').config()
 import { Request, Response, NextFunction } from 'express'
 import { ITokenPayLoad } from '../interfaces/ITokenPayLoad'
 import jwt from 'jsonwebtoken'
 
-export default function authMiddleware(request: Request, response: Response, next: NextFunction) {
+export default async function authMiddleware(request: Request, response: Response, next: NextFunction) {
     const { authorization } = request.headers
 
     if (!authorization) return response.status(401).json({ error: 'Unauthorized' })
@@ -10,9 +11,9 @@ export default function authMiddleware(request: Request, response: Response, nex
     const token = authorization?.replace('Bearer', '').trim()
 
     try {
-        const data = jwt.verify(token, 'secret')
+        const data = jwt.verify(token, `${process.env.SECRET_KEY}`)
 
-        // const { id } = data as ITokenPayLoad
+        if (!data) return response.status(401).json({ error: 'Unauthorized' })
 
         return next()
 
