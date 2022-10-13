@@ -98,6 +98,8 @@ A API [Coinpaprika](https://api.coinpaprika.com/) possui um limite de 10 requisi
 
 - Salvar no MongoDB as moedas da API
 ```json
+// ** Já estão salvas, não precisa realizar a requisição
+
 $ GET | localhost:3000/v1/coins/save
 ```
 
