@@ -6,7 +6,7 @@ import { listCoins, listFavoriteCoins, writeCoins, saveCoins, getCoinByIdCoin} f
 
 const router: Router = Router()
 
-router.post('/v1/coins', authMiddleware, writeCoins)
+router.post('/v1/coins/write', authMiddleware, writeCoins)
 router.get('/v1/coins/list', authMiddleware, listCoins)
 router.get('/v1/coins/list/favorites', authMiddleware, listFavoriteCoins)
 router.get('/v1/coins/save', authMiddleware, saveCoins)

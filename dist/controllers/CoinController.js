@@ -3,7 +3,6 @@
 var _Coin = require('../models/Coin'); var _Coin2 = _interopRequireDefault(_Coin);
 var _apinodejsclient = require('@coinpaprika/api-nodejs-client'); var _apinodejsclient2 = _interopRequireDefault(_apinodejsclient);
 
-// Salvar no banco as coins da API
 const saveCoins = async (request, response) => {
     try {
         const client = new (0, _apinodejsclient2.default)()
@@ -72,7 +71,6 @@ const listFavoriteCoins = async (request, response) => {
     }
 }
 
-// Favoritar, editar favorito, remover favorito
 const writeCoins = async (request, response) => {
     try {
 

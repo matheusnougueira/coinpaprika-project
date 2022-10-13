@@ -3,14 +3,11 @@ import { ICoin } from '../interfaces/ICoin'
 import Coin from '../models/Coin'
 import CoinpaprikaAPI from '@coinpaprika/api-nodejs-client'
 
-// Salvar no banco as coins da API
 const saveCoins = async (request: Request, response: Response): Promise<void> => {
     try {
         const client = new CoinpaprikaAPI()
 
         client.getCoins().then((el) => {
-            console.log('entrou no then')
-            console.log('el', el)
             el.map(element => {
 
                 const coin: ICoin = new Coin({
@@ -72,7 +69,6 @@ const listFavoriteCoins = async (request: Request, response: Response): Promise<
     }
 }
 
-// Favoritar, editar favorito, remover favorito
 const writeCoins = async (request: Request, response: Response): Promise<void> => {
     try {
 
