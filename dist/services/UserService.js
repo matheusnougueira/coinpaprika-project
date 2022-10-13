@@ -1,4 +1,4 @@
-// import { Request, Response } from 'express'
+"use strict";// import { Request, Response } from 'express'
 // import { IUser } from '../types/IUser';
 // import User from '../models/User'
 // import bcrypt from 'bcryptjs'
