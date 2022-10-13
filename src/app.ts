@@ -14,7 +14,7 @@ app.use(cors())
 app.use(userRoutes)
 app.use(coinRoutes)
 
-const uri: string = `${process.env.DB_HOST}`
+const uri: string = `mongodb+srv://${process.env.DB_CREDENTIALS}@cluster0.h2iujyl.mongodb.net/?retryWrites=true&w=majority`
 
 mongoose
     .connect(uri)
