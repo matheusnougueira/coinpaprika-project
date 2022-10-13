@@ -1,6 +1,5 @@
 require('dotenv').config()
 import { Request, Response, NextFunction } from 'express'
-import { ITokenPayLoad } from '../interfaces/ITokenPayLoad'
 import jwt from 'jsonwebtoken'
 
 export default async function authMiddleware(request: Request, response: Response, next: NextFunction) {

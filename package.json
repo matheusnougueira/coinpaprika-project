@@ -20,7 +20,6 @@
     "eslint-config-standard": "^12.0.0",
     "eslint-plugin-import": "^2.16.0",
     "eslint-plugin-node": "^8.0.1",
-    "eslint-plugin-prettier": "7.28.0",
     "eslint-plugin-promise": "^4.0.1",
     "eslint-plugin-standard": "^4.0.0",
     "nodemon": "^1.18.10",
@@ -29,6 +28,7 @@
     "typescript": "*"
   },
   "dependencies": {
+    "@coinpaprika/api-nodejs-client": "^1.2.0",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",

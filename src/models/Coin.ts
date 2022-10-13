@@ -5,7 +5,13 @@ const CoinSchema: Schema = new Schema({
     idCoin: {
         type: String,
     },
+    typeCoin: {
+        type: String,
+    },
     symbol: {
+        type: String,
+    },
+    coinName: {
         type: String,
     },
     description: {
